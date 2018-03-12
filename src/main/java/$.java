@@ -1,9 +1,11 @@
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class $ {
 
@@ -45,4 +47,17 @@ public class $ {
         }));
     }
 
+    public static void destroyInteger() {
+        try {
+            Class<?> clazz = Class.forName("java.lang.Integer$IntegerCache");
+            Field field = clazz.getDeclaredField("cache");
+            field.setAccessible(true);
+            Integer[] cache = (Integer[]) field.get(clazz);
+            for (int i = 0; i < cache.length; i++) {
+                cache[i] = new Integer(new Random().nextInt(cache.length));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

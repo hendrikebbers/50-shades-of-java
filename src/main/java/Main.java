@@ -1,13 +1,22 @@
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            System.out.println("1");
-            throw new Exception("ARGH!");
-        } finally {
-            System.out.println("2");
-            return;
-        }
+        $.addShutdownHook(() -> System.out.println("TSCHÜSSSSS"));
+
+        $.addShutdownHook(() -> {
+            $.sleep(2_000);
+            System.out.println("TSCHÜSSSSS");
+        });
+
+        $.addShutdownHook(() -> {
+            while (true) {}
+        });
+
+        $.addShutdownHook(() -> {
+           System.exit(900);
+        });
+
+        System.out.println("HUHU");
     }
 
 }

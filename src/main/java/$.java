@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +25,24 @@ public class $ {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void killOut() {
+        System.setOut(new PrintStream(new OutputStream() {
+            @Override
+            public void write(final int b) throws IOException {
+
+            }
+        }));
+    }
+
+    public static void killErr() {
+        System.setErr(new PrintStream(new OutputStream() {
+            @Override
+            public void write(final int b) throws IOException {
+
+            }
+        }));
     }
 
 }

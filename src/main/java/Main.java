@@ -1,26 +1,20 @@
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
     public static void main(String[] args) throws Exception{
-        final CoolData data = new CoolData("Hello World");
-        data.setCount(12);
+        final Data data1 = new Data("JavaLand");
+        final Data data2 = new Data("JUG Dortmund");
 
-        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        final ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+        final Set<Data> set = new HashSet<>();
+        set.add(data1);
+        set.add(data2);
 
-        objectOutputStream.writeObject(data);
-        final byte[] bytes = byteArrayOutputStream.toByteArray();
-        final String dataString = new String(bytes);
-        System.out.println(dataString);
+        data1.setCount(12);
 
-        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-        final ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        final Object reconverted = objectInputStream.readObject();
-        System.out.println(reconverted.toString());
+        System.out.println("Data1: " + set.contains(data1));
+        System.out.println("Data2: " + set.contains(data2));
     }
 
 }

@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Data implements Serializable {
 
@@ -24,6 +25,21 @@ public class Data implements Serializable {
 
     public void setCount(final int count) {
         this.count = count;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Data data = (Data) o;
+        return count == data.count &&
+                Objects.equals(name, data.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, count);
     }
 
     @Override
